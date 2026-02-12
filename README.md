@@ -9,6 +9,10 @@
 - EDA + проверка гипотез + дашборд
 - Python, Pandas, SciPy, DataLens
 
+
+### E-commerce Sales Export Analysis
+**In progress**
+
 ---
 
 ## Обо мне
