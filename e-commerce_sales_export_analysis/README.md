@@ -36,20 +36,31 @@
 Исходный датасет: 1000 записей × 10 полей
 
 `country` -	Страна-импортер
+
 `order_value_eur` - Сумма заказа в евро
+
 `cost`	-	Себестоимость заказа
+
 `date`	-	Дата заказа
+
 `category` -	Категория товара
+
 `customer_name` -	Название клиента
+
 `sales_manager`	-	Менеджер продаж
+
 `sales_rep`	-	Торговый представитель
+
 `device_type`	-	Устройство (PC/Mobile/Tablet)
+
 `order_id`	-	Уникальный ID заказа
 
 **Созданные признаки:**
 
 `profit` = `order_value_eur - cost` - Выручка в евро
+
 `profit_margin` = `(profit / order_value_eur) × 100` - Маржинальность, %
+
 `year`, `month` — Год, месяц (для временного анализа)
 
 ---
