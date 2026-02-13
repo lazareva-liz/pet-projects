@@ -69,7 +69,7 @@ cumulative_analysis AS (
     FROM portugal_stats
 )
 SELECT 
-    -- Сколько клиентов дают 80% выручки?
+    -- Сколько % клиентов дают 80% выручки?
     MIN(client_percentile) FILTER (WHERE cumulative_revenue >= country_total * 0.8) as clients_for_80_pct_revenue,
     -- Топ-10% клиентов дают сколько % выручки?
     ROUND((MAX(cumulative_revenue) FILTER (WHERE client_percentile <= 10) * 100.0 / MAX(country_total))::NUMERIC, 2) as top_10_pct_share,
