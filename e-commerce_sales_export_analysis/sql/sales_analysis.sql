@@ -17,7 +17,7 @@ SELECT
     SUM(profit) as profit,
     ROUND(AVG(profit_margin)::NUMERIC, 2) as avg_margin,
     -- Процент увеличения прибыли год к году
-    ROUND(((SUM(profit) - LAG(SUM(profit)) OVER (ORDER BY "year")) / LAG(SUM(profit)) OVER (ORDER BY "year"))::NUMERIC * 100, 2) as profit_growth_pct
+    ROUND(((SUM(profit) - LAG(SUM(profit)) OVER (ORDER BY year)) / LAG(SUM(profit)) OVER (ORDER BY year))::NUMERIC * 100, 2) as profit_growth_pct
 FROM proj.sales
 GROUP BY "year" 
 ORDER BY "year";
@@ -130,7 +130,6 @@ FROM proj.sales
 GROUP BY device_type
 ORDER BY avg_order_value DESC;
 
--- Почему на PC выше средний чек?
 -- Анализ по странам: на PC покупают в дорогих странах?
 SELECT 
     device_type,
@@ -142,7 +141,7 @@ SELECT
 FROM proj.sales
 GROUP BY device_type, country
 HAVING COUNT(*) >= 5  -- Только значимые комбинации
-ORDER BY device_type, avg_order_value_country DESC;
+ORDER BY avg_order_value_country DESC;
 
 -- На PC покупают дорогие категории?
 SELECT 
@@ -155,10 +154,10 @@ SELECT
     ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (PARTITION BY device_type), 2) as category_share_percent
 FROM proj.sales
 GROUP BY device_type, category
-ORDER BY device_type, avg_order_value DESC;
+ORDER BY  avg_order_value DESC;
 
 
--- Гипотеза 3a: Категория Clothing самая прибыльная, благодаря высокой частоте покупок, в то время как Smartphones показывает 
+-- Гипотеза 3: Категория Clothing самая прибыльная, благодаря высокой частоте покупок, в то время как Smartphones показывает 
 -- максимальную маржинальность при меньших объемах прибыли
 WITH category_stats AS (
     SELECT 
@@ -186,8 +185,7 @@ FROM category_stats
 ORDER BY total_profit DESC;
 
 
--- Сравнение 2019 vs 2020 (COVID impact)
--- Как изменилось поведение клиентов во время COVID?
+-- Сравнение 2019 vs 2020 
 WITH monthly_stats AS (
     SELECT 
         year,
@@ -196,7 +194,7 @@ WITH monthly_stats AS (
         AVG(order_value_eur) as avg_value,
         SUM(order_value_eur) as monthly_revenue,
         COUNT(DISTINCT customer_name) as active_customers,
-        -- Анализ по странам в июне
+        -- Анализ по странам
         COUNT(DISTINCT country) as countries_active
     FROM proj.sales
     GROUP BY year, month
@@ -294,6 +292,17 @@ SELECT
 FROM country_performance
 ORDER BY avg_margin DESC;
 
+-- Что покупают в странах с высоким потенциалом?
+SELECT 
+    country,
+    category,
+    COUNT(*) as orders,
+    ROUND(AVG(profit_margin)::NUMERIC, 2) as avg_margin,
+    ROUND(SUM(profit)::NUMERIC, 2) as total_profit
+FROM proj.sales
+WHERE country IN ('Austria', 'Denmark', 'Bulgaria', 'Luxembourg')
+GROUP BY country, category
+ORDER BY country, total_profit DESC;
 
 -- Анализ эффективности менеджеров
 -- Кто приносит наибольшую прибыль?
