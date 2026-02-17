@@ -466,7 +466,7 @@ HIGH POTENTIAL = высокая маржинальность (топ-5) + отн
 - Изменение в % относительно периода сравнения
 
 ### Доступ к дашборду
-- **DataLens**:[ссылка на дашборд](https://datalens.yandex/smusuyj6dijoc)
+- **DataLens**: [ссылка на дашборд](https://datalens.yandex/smusuyj6dijoc)
   
 ---
 
