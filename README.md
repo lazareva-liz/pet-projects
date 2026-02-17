@@ -4,15 +4,31 @@
 
 ## Проекты
 
-### [Student Performance Analysis](students-dropout-and-academic-success)
+### 1. [Student Performance Analysis](students-dropout-and-academic-success)
 **Анализ факторов успеваемости студентов**
-- EDA + проверка гипотез + дашборд
-- Python, Pandas, SciPy, DataLens
+**Цель:** выявить факторы, влияющие на отчисление студентов, и построить дашборд для мониторинга успеваемости.
+
+**Анализ включал:**
+- Разведочный анализ данных (EDA)
+- Проверка гипотез
+- Построение дашборда
+- 
+**Стек**: Python (Pandas, SciPy, NumPy), DataLens.
 
 
 
-### E-commerce Sales Export Analysis
-**In progress**
+### 2. [E-commerce Sales Export Analysis](e-commerce_sales_export_analysis)
+**Комплексный анализ экспортных продаж (2019-2020)**
+**Цель:** определить точки роста экспортных продаж, оценить устойчивость бизнеса в период пандемии и сформулировать data-driven рекомендации.
+**Анализ включал:**
+- Разведочный анализ данных (EDA)
+- Проверка гипотез
+- Временной анализ и влияние пандемии
+- Анализ упущенной выгоды по странам
+- Оценка эффективности менеджеров
+- Построение дашборда в DataLens
+  
+**Стек:** Python (Pandas, Matplotlib, Seaborn), PostgreSQL, Datalens
 
 ---
 
